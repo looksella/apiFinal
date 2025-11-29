@@ -60,6 +60,6 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 
 
-# 🛒 API Tienda - Base de Datos Completada
+# API Tienda - Base de Datos Completada
 
-## 📋 Estructura BD
+## Estructura BD
