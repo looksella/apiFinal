@@ -1,13 +1,24 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\API\ProductReviewController;
 
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login',    [AuthController::class, 'login']);
+Route::post('/refresh',  [AuthController::class, 'refresh']);
+
+//Rutas protegidas
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/me', [AuthController::class, 'me']); //clase protegida de ejemplo, retorna info de el usuario
+    Route::post('/logout', [AuthController::class, 'logout']);
+});
+
 // Endpoints publicos
 Route::get('products', [ProductController::class, 'index']);
-Route::get('products/{product}', [ProductController::class, 'show']);
 Route::get('products/best', [ProductController::class, 'best']);
+Route::get('products/{product}', [ProductController::class, 'show']);
+
 
 // Endpoints protegidos requieren usuario autenticado - Sanctum o similar
 Route::middleware('auth:sanctum')->group(function () {
