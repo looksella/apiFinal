@@ -6,11 +6,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens; // IMPORTANTE: Esta línea se agregó
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable; // IMPORTANTE: Se agregó HasApiTokens aquí
 
     /**
      * The attributes that are mass assignable.
@@ -47,11 +48,10 @@ class User extends Authenticatable
     }
 
     public function storeProducts() {
-    return $this->hasMany(StoreProduct::class);
-}
+        return $this->hasMany(StoreProduct::class);
+    }
 
-public function reviews() {
-    return $this->hasMany(ProductReview::class);
-}
-
+    public function reviews() {
+        return $this->hasMany(ProductReview::class);
+    }
 }

@@ -1,0 +1,52 @@
+{
+	"info": {
+		"_postman_id": "e7842aad-c82d-4293-b206-055f2c2522ee",
+		"name": "Entrega API Grupo 5",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33101059"
+	},
+	"item": [
+		{
+			"name": "Ver Productos",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "2|aBOZbufSr491XWJnF4fAkYIKuTxQGSXxzuwudq4s375d2b64",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Producto Final\",\r\n    \"price\": 100.50,\r\n    \"stock\": 10\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/products",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"products"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
