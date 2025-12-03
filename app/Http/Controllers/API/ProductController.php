@@ -55,20 +55,19 @@ class ProductController extends Controller
         return response()->json($product);
     }
 
-    public function best()
+        public function best()
     {
-        // Carga productos con reseñas y selecciona el de mayor calificación promedio.
-        $product = Product::with('reviews.user')->get()->sortByDesc(function ($p) {
-            return $p->average_rating ?? 0;
-        })->first();
+        $products = Product::with('reviews.user')->get();
 
-        if (! $product) {
+        if ($products->isEmpty()) {
             return response()->json(['message' => 'No se encontraron productos'], 404);
         }
 
+        $product = $products->sortByDesc(fn ($p) => $p->average_rating)->first();
+
         return response()->json([
             'product' => $product,
-            'average_rating' => (float) ($product->average_rating ?? 0),
+            'average_rating' => $product->average_rating,
         ]);
     }
 

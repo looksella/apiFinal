@@ -14,8 +14,11 @@ class StoreProduct extends Model {
     public function reviews() {
         return $this->hasMany(ProductReview::class, 'store_product_id');
     }
+
+    protected $appends = ['average_rating'];
     
-    public function getAverageRatingAttribute() {
-        return $this->reviews()->avg('rating') ?? 0;
+    public function getAverageRatingAttribute(){
+    return round($this->reviews()->avg('rating') ?? 0, 2);
     }
+
 }
